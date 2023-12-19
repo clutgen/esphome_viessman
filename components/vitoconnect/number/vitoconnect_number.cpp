@@ -29,5 +29,10 @@ void OPTOLINKNumber::encode(uint8_t* raw, uint8_t length, float data) {
 
 }
 
+void OPTOLINKNumber::void control(float value){
+  uint8_t roundedValue = static_cast<uint8_t>(std::round(value));
+  std::memcpy(dp->data, &roundedValue, sizeof(uint8_t));
+}
+
 }  // namespace vitoconnect
 }  // namespace esphome
