@@ -17,6 +17,7 @@ CONFIG_SCHEMA = number.NUMBER_SCHEMA.extend({
 })
 
 async def to_code(config):
+    print(config)
     var = await number.new_number(config)
 
     # Add configuration to datapoint
