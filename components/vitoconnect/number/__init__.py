@@ -18,7 +18,7 @@ async def to_code(config):
 
     # Add configuration to datapoint
     cg.add(var.setAddress(config[CONF_ADDRESS]))
-    cg.add(var.setLength(config[CONF_LENGTH]))
+    cg.add(var.setLength(1))
 
     # Add number to component hub (VitoConnect)
     hub = await cg.get_variable(config[CONF_VITOCONNECT_ID])
