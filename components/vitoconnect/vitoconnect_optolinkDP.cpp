@@ -28,6 +28,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 namespace esphome {
 namespace vitoconnect {
 
+static const char *TAG = "vitoconnect";
+
 OptolinkDP::OptolinkDP(uint16_t address, uint8_t length, bool write, uint8_t* value, void* arg) :
   address(address),
   length(length),
