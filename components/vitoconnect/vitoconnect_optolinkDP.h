@@ -70,12 +70,12 @@ class OptolinkDP {
    */
   OptolinkDP();
 
-  /**
-   * @brief Copy constructor for the OptolinkDP class.
-   * 
-   * @param obj Object to be copied.
-   */
-  OptolinkDP(const OptolinkDP& obj);
+  // /**
+  //  * @brief Copy constructor for the OptolinkDP class.
+  //  * 
+  //  * @param obj Object to be copied.
+  //  */
+  // OptolinkDP(const OptolinkDP& obj);
 
   /**
    * @brief Destroy the OptolinkDP object
