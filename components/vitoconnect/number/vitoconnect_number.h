@@ -1,6 +1,9 @@
 #pragma once
 
 #include "esphome/core/component.h"
+#include "esphome/components/uart/uart.h"
+#include "esphome/components/uart/uart_component.h"
+#include "esphome/components/sensor/sensor.h"
 #include "esphome/components/number/number.h"
 #include "../vitoconnect_datapoint.h"
 
