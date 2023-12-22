@@ -31,6 +31,7 @@ void OPTOLINKNumber::encode(uint8_t* raw, uint8_t length, float data) {
 
 void OPTOLINKNumber::control(float value){
   uint8_t roundedValue = static_cast<uint8_t>(std::round(value));
+  ESP_LOGD(TAG, "Value to update number : %d", roundedValue);
   setData(&roundedValue, sizeof(uint8_t));
 }
 
