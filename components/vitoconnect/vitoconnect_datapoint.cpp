@@ -31,11 +31,11 @@ namespace vitoconnect {
 std::function<void(uint8_t[], uint8_t, Datapoint* dp)> Datapoint::_stdOnData = nullptr;
 
 Datapoint::Datapoint(){
-  // empty
+  _data = nullptr;
 }
 
 Datapoint::~Datapoint() {
-  // empty
+  if (_data) delete[] _data;
 }
 
 void Datapoint::onData(std::function<void(uint8_t[], uint8_t, Datapoint* dp)> callback) {
@@ -62,6 +62,11 @@ void Datapoint::decode(uint8_t* data, uint8_t length, Datapoint* dp) {
   }
   delete[] output;
 }
+
+  void Datapoint::setData(uint8_t* data, uint8_t length) { 
+    _data = new uint8_t[length];
+    memcpy(_data, data, length); 
+  };
 
 }  // namespace vitoconnect
 }  // namespace esphome

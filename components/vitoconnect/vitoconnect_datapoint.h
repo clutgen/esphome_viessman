@@ -48,7 +48,7 @@ class Datapoint {
   void setWrite(bool write) { this->_write = write; };
   bool getWrite() { return this->_write; };
 
-  void setData(uint8_t* data, uint8_t length) { memcpy(this->_data, data, length); };
+  void setData(uint8_t* data, uint8_t length);
   uint8_t* getData() { return this->_data; };
 
   static void onData(std::function<void(uint8_t[], uint8_t, Datapoint* dp)> callback);
@@ -61,7 +61,7 @@ class Datapoint {
   uint16_t _address;
   uint8_t _length;
   bool _write = false;
-  uint8_t* _data = nullptr;
+  uint8_t* _data;
   static std::function<void(uint8_t[], uint8_t, Datapoint* dp)> _stdOnData;
 };
 
