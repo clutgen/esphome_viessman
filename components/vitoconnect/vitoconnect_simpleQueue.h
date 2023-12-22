@@ -33,6 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #pragma once
 
 #include <stddef.h>
+#include <mutex>
 
 namespace esphome {
 namespace vitoconnect {
@@ -60,6 +61,7 @@ class SimpleQueue {
     }
 
   SimpleQueue(const SimpleQueue& obj) {
+    std::lock_guard<std::mutex> lock(obj._mutex);
     _buffer = new T[obj._size];
     _firstPosition = obj._firstPosition;
     _nextPosition = obj._nextPosition;
@@ -89,6 +91,7 @@ class SimpleQueue {
    * @return false Element has not been added (eg. queue full).
    */
   bool push(T t) {
+    std::lock_guard<std::mutex> lock(_mutex);
     if (_count < _size) {
       _buffer[_nextPosition++] = t;
       ++_count;
@@ -110,6 +113,7 @@ class SimpleQueue {
    * 
    */
   void pop() {
+    std::lock_guard<std::mutex> lock(_mutex);
     if (_count > 0) {
       ++_firstPosition;
       if (_firstPosition == _size) {
@@ -129,6 +133,7 @@ class SimpleQueue {
    * @return T* Pointer to the first element. nullptr on an empty buffer.
    */
   T* front() const {
+    std::lock_guard<std::mutex> lock(_mutex);
     if (_count > 0) {
       return &_buffer[_firstPosition];
     } else {
@@ -142,6 +147,7 @@ class SimpleQueue {
    * @return size_t number of elements.
    */
   size_t size() const {
+    std::lock_guard<std::mutex> lock(_mutex);
     return _count;
   }
 
@@ -151,6 +157,7 @@ class SimpleQueue {
   size_t _nextPosition;
   size_t _count;
   const size_t _size;
+  mutable std::mutex _mutex;
 };
 
 }  // namespace vitoconnect
