@@ -68,11 +68,19 @@ void VitoConnect::update() {
   ESP_LOGD(TAG, "Schedule sensor update");
   
   for (Datapoint* dp : this->_datapoints) {
-      CbArg* arg = new CbArg(this, dp);   
-      if (_optolink->read(dp->getAddress(), dp->getLength(), reinterpret_cast<void*>(arg))) {
+      CbArg* arg = new CbArg(this, dp);
+      if (dp->getWrite()) 
+      {
+        if (_optolink->write(dp->getAddress(), dp->getLength(), dp->getData(), reinterpret_cast<void*>(arg))) {
+        } else {
+            delete arg;
+        }
       } else {
-          delete arg;
-      }
+        if (_optolink->read(dp->getAddress(), dp->getLength(), reinterpret_cast<void*>(arg))) {
+        } else {
+            delete arg;
+        }
+      } 
   }
 }
 
