@@ -28,6 +28,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 namespace esphome {
 namespace vitoconnect {
 
+static const char *TAG = "vitoconnect";
+
 Optolink::Optolink(uart::UARTDevice* uart) :
   _uart(uart),
   _queue(VITOWIFI_MAX_QUEUE_LENGTH),
@@ -61,6 +63,7 @@ bool Optolink::read(uint16_t address, uint8_t length, void* arg) {
 
 bool Optolink::write(uint16_t address, uint8_t length, uint8_t* data, void* arg) {
   OptolinkDP dp(address, length, true, data, arg);
+  if (dp->data != nullptr) ESP_LOGD(TAG, "getWrite true value : %d", *(dp->data));
   return _queue.push(dp);
 }
 
