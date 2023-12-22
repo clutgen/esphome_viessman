@@ -64,7 +64,7 @@ void Datapoint::decode(uint8_t* data, uint8_t length, Datapoint* dp) {
 }
 
   void Datapoint::setData(uint8_t* data, uint8_t length) { 
-    _data = new uint8_t[length];
+    if(!_data) _data = new uint8_t[length];
     memcpy(_data, data, length); 
   };
 
