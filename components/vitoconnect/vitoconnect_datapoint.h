@@ -61,7 +61,7 @@ class Datapoint {
   uint16_t _address;
   uint8_t _length;
   bool _write = false;
-  uint8_t* _data;
+  uint8_t* _data = nullptr;
   static std::function<void(uint8_t[], uint8_t, Datapoint* dp)> _stdOnData;
 };
 
