@@ -55,7 +55,7 @@ void VitoConnect::setup() {
 }
 
 void VitoConnect::register_datapoint(Datapoint *datapoint) {
-    ESP_LOGD(TAG, "Adding datapoint with address %x and length %d", datapoint->getAddress(), datapoint->getLength());
+    ESP_LOGD(TAG, "Adding datapoint with address %x, length %d, write %d", datapoint->getAddress(), datapoint->getLength(), datapoint->getWrite());
     this->_datapoints.push_back(datapoint);
 }
 
