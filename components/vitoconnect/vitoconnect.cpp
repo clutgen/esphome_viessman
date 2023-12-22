@@ -73,7 +73,7 @@ void VitoConnect::update() {
       if (dp->getWrite()) 
       {
         ESP_LOGD(TAG, "getWrite true");
-        if (dp->getData() != nullptr && dp->write(dp->getAddress(), dp->getLength(), dp->getData(), reinterpret_cast<void*>(arg))) {
+        if (dp->getData() != nullptr && _optolink->write(dp->getAddress(), dp->getLength(), dp->getData(), reinterpret_cast<void*>(arg))) {
         } else {
             delete arg;
         }
