@@ -54,6 +54,7 @@ OptolinkDP::OptolinkDP(const OptolinkDP& obj) {
   data = nullptr;
   arg = obj.arg;
   if (write) {
+    ESP_LOGD(TAG, "extract from queue : %d", *(obj.data));
     data = new uint8_t[length];
     memcpy(data, obj.data, length);
   }

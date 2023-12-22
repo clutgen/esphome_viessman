@@ -32,6 +32,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 #pragma once
 
+#include "esphome/core/component.h"
+#include "esphome/components/uart/uart_component.h"
+#include "esphome/components/sensor/sensor.h"
+#include "esphome/components/uart/uart.h"
+
 #include <stdint.h>
 #include <string.h>  // memcpy
 
