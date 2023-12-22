@@ -127,7 +127,7 @@ void OptolinkKW::_send() {
     buff[3] = length;
     // add value to message
     //memcpy(&buff[4], dp->data, length);
-    memset(&buff[4], 1, length);
+    memset(&buff[4], 4, length);
     _rcvLen = 1;  // expected length is only ACK (0x00)
     _uart->write_array(buff, 4 + length);
   } else {
