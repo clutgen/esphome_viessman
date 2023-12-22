@@ -49,18 +49,18 @@ OptolinkDP::OptolinkDP() :
   data(nullptr),
   arg(nullptr) {}
 
-// OptolinkDP::OptolinkDP(const OptolinkDP& obj) {
-//   address = obj.address;
-//   length = obj.length;
-//   write = obj.write;
-//   data = nullptr;
-//   arg = obj.arg;
-//   if (write) {
-//     //Correct dp->getData() value here
-//     data = new uint8_t[length];
-//     memcpy(data, obj.data, length);
-//   }
-// }
+OptolinkDP::OptolinkDP(const OptolinkDP& obj) {
+  address = obj.address;
+  length = obj.length;
+  write = obj.write;
+  data = nullptr;
+  arg = obj.arg;
+  if (write) {
+    //Correct dp->getData() value here
+    data = new uint8_t[length];
+    memcpy(data, obj.data, length);
+  }
+}
 
 OptolinkDP::~OptolinkDP() {
   if (data) delete[] data;

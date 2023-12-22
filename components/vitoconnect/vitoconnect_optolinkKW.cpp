@@ -155,7 +155,7 @@ void OptolinkKW::_receive() {
     OptolinkDP* dp = _queue.front();
     // ESP_LOGD(TAG, "Adding datapoint with address %x and length %d", dp->address, dp->length);
     if (dp->write) {
-      if (dp->data != nullptr) ESP_LOGD(TAG, "getWrite true value : %d", *(dp->data));
+      if (dp->data != nullptr) ESP_LOGD(TAG, "getWrite true adress, length, value : %x,%d,%d", dp->address, dp->length, *(dp->data));
       _tryOnData(dp->data, dp->length);
     } else {
       _tryOnData(_rcvBuffer, dp->length);
