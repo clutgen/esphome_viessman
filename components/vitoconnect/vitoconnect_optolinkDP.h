@@ -36,6 +36,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "esphome/components/uart/uart_component.h"
 #include "esphome/components/sensor/sensor.h"
 #include "esphome/components/uart/uart.h"
+#include "vitoconnect_optolink.h"
 
 #include <stdint.h>
 #include <string.h>  // memcpy
@@ -85,7 +86,7 @@ class OptolinkDP {
   uint16_t address;  //!< Address of the datapoint, 2 bytes
   uint8_t length;    //!< Length of the dataponit, 1 byte
   bool write;        //!< Mark the dataponit as writeable (true) or not (false)
-  uint8_t* data;     //!< Pointer to the (raw) data to be written. Memory is allocated by this class
+  uint8_t data[MAX_DP_LENGTH] = {0};   //!< Pointer to the (raw) data to be written. Memory is allocated by this class
   void* arg;         //!< Argument to be used on the callback function
 };
 

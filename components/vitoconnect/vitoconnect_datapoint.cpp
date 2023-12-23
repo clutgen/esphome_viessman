@@ -31,11 +31,9 @@ namespace vitoconnect {
 std::function<void(uint8_t[], uint8_t, Datapoint* dp)> Datapoint::_stdOnData = nullptr;
 
 Datapoint::Datapoint(){
-  _data = nullptr;
 }
 
 Datapoint::~Datapoint() {
-  if (_data) delete[] _data;
 }
 
 void Datapoint::onData(std::function<void(uint8_t[], uint8_t, Datapoint* dp)> callback) {
@@ -64,7 +62,6 @@ void Datapoint::decode(uint8_t* data, uint8_t length, Datapoint* dp) {
 }
 
   void Datapoint::setData(uint8_t* data, uint8_t length) { 
-    if(!_data) _data = new uint8_t[length];
     memcpy(_data, data, length); 
   };
 

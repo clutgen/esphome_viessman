@@ -74,7 +74,7 @@ void VitoConnect::update() {
       {
         ESP_LOGD(TAG, "getWrite true");
         //Correct dp->getData() value here
-        if (dp->getData() != nullptr && _optolink->write(dp->getAddress(), dp->getLength(), dp->getData(), reinterpret_cast<void*>(arg))) {
+        if (_optolink->write(dp->getAddress(), dp->getLength(), dp->getData(), reinterpret_cast<void*>(arg))) {
         } else {
             delete arg;
         }

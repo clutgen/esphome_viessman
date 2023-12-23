@@ -120,15 +120,15 @@ void OptolinkKW::_send() {
   uint8_t length = dp->length;
   uint16_t address = dp->address;
   if (dp->write) {
-    if (dp->data != nullptr) ESP_LOGD(TAG, "optolinkw send adress, length, value : %x,%d,%d", dp->address, dp->length, *(dp->data));
+    //if (dp->data != nullptr) ESP_LOGD(TAG, "optolinkw send adress, length, value : %x,%d,%d", dp->address, dp->length, *(dp->data));
     // type is WRITE, has length of 4 chars + length of value
     buff[0] = 0xF4;
     buff[1] = (address >> 8) & 0xFF;
     buff[2] = address & 0xFF;
     buff[3] = length;
     // add value to message
-    //memcpy(&buff[4], dp->data, length);
-    memset(&buff[4], 4, length);
+    memcpy(&buff[4], dp->data, length);
+    //memset(&buff[4], 4, length);
     _rcvLen = 1;  // expected length is only ACK (0x00)
     _uart->write_array(buff, 4 + length);
   } else {
@@ -156,7 +156,7 @@ void OptolinkKW::_receive() {
     OptolinkDP* dp = _queue.front();
     // ESP_LOGD(TAG, "Adding datapoint with address %x and length %d", dp->address, dp->length);
     if (dp->write) {
-      if (dp->data != nullptr) ESP_LOGD(TAG, "optolinkw write adress, length, value : %x,%d,%d", dp->address, dp->length, *(dp->data));
+      //if (dp->data != nullptr) ESP_LOGD(TAG, "optolinkw write adress, length, value : %x,%d,%d", dp->address, dp->length, *(dp->data));
       _tryOnData(dp->data, dp->length);
     } else {
       _tryOnData(_rcvBuffer, dp->length);
