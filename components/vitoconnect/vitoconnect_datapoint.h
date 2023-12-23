@@ -25,8 +25,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #pragma once
 
-#include "vitoconnect_optolink.h"
-
 #include <stdint.h>
 #include <assert.h>
 #include <functional>
@@ -63,7 +61,7 @@ class Datapoint {
   uint16_t _address;
   uint8_t _length;
   bool _write = false;
-  uint8_t _data[MAX_DP_LENGTH] = {0};
+  uint8_t _data[10] = {0};
   static std::function<void(uint8_t[], uint8_t, Datapoint* dp)> _stdOnData;
 };
 
