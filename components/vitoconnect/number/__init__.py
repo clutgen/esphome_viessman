@@ -14,7 +14,7 @@ CONFIG_SCHEMA = number.NUMBER_SCHEMA.extend({
 })
 
 async def to_code(config):
-    var = await number.new_number(config, min_value = 0, max_value = 1, step = 1)
+    var = await number.new_number(config, min_value = 0, max_value = 30, step = 1)
 
     # Add configuration to datapoint
     cg.add(var.setAddress(config[CONF_ADDRESS]))
