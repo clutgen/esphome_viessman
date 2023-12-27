@@ -11,6 +11,7 @@ CONFIG_SCHEMA = number.NUMBER_SCHEMA.extend({
     cv.GenerateID(): cv.declare_id(OPTOLINKNumber),
     cv.GenerateID(CONF_VITOCONNECT_ID): cv.use_id(VitoConnect),
     cv.Required(CONF_ADDRESS): cv.uint16_t,
+    cv.Required(CONF_LENGTH): cv.uint8_t,
 })
 
 async def to_code(config):
@@ -18,7 +19,7 @@ async def to_code(config):
 
     # Add configuration to datapoint
     cg.add(var.setAddress(config[CONF_ADDRESS]))
-    cg.add(var.setLength(1))
+    cg.add(var.setLength(config[CONF_LENGTH]))
     cg.add(var.setWrite(True))
 
     # Add number to component hub (VitoConnect)
