@@ -31,14 +31,14 @@ void OPTOLINKNumber::encode(uint8_t* raw, uint8_t length, float data) {
 
 }
 
-void OPTOLINKNumber::control(float value, uint8_t length){
-  if (length == 1)
+void OPTOLINKNumber::control(float value){
+  if (_length == 1)
   {
     uint8_t roundedValue = static_cast<uint8_t>(std::round(value));
     ESP_LOGD(TAG, "Value to update number : %d", roundedValue);
-    setData(&roundedValue, length);
+    setData(&roundedValue, _length);
   }
-  else if (length == 2)
+  else if (_length == 2)
   {
     float valueToSend = value * 10.0f;
     uint8_t array[2] = {0};
@@ -46,7 +46,7 @@ void OPTOLINKNumber::control(float value, uint8_t length){
     array[0] = static_cast<uint8_t>(roundedValue & 0xFF);
     array[1] = static_cast<uint8_t>((roundedValue >> 8) & 0xFF);
     ESP_LOGD(TAG, "Value to update number : %d", roundedValue);
-    setData(array, length);
+    setData(array, _length);
   }
   else
   {

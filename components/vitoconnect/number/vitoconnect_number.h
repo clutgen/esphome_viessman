@@ -20,7 +20,7 @@ class OPTOLINKNumber : public number::Number, public Datapoint {
     void encode(uint8_t* raw, uint8_t length, void* data) override;
     void encode(uint8_t* raw, uint8_t length, float data);
 
-    void control(float value, uint8_t length);
+    void control(float value);
 };
 
 }  // namespace vitoconnect
