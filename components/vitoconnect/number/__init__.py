@@ -1,7 +1,7 @@
 import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import number
-from esphome.const import CONF_ID, CONF_NAME, CONF_ADDRESS
+from esphome.const import CONF_ID, CONF_NAME, CONF_ADDRESS, CONF_LENGTH
 from .. import vitoconnect_ns, VitoConnect, CONF_VITOCONNECT_ID
 
 DEPENDENCIES = ["vitoconnect"]
