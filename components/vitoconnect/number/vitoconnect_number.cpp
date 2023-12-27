@@ -18,7 +18,20 @@ void OPTOLINKNumber::decode(uint8_t* data, uint8_t length, Datapoint* dp) {
 
   if (!dp) dp = this;
 
-  publish_state(data[0]);
+  if (_length == 1){
+    int16_t tmp = 0;
+    tmp = data[0];
+    float value = tmp / 1.0f;
+    publish_state(value);
+  }
+
+  // Commonly temperature with factor /10 or /100
+  if (_length == 2){
+    int16_t tmp = 0;
+    tmp = data[1] << 8 | data[0];
+    float value = tmp / 1.0f;
+    publish_state(value);
+  }
 }
 
 void OPTOLINKNumber::encode(uint8_t* raw, uint8_t length, void* data) {
