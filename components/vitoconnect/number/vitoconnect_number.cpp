@@ -29,7 +29,7 @@ void OPTOLINKNumber::decode(uint8_t* data, uint8_t length, Datapoint* dp) {
   if (_length == 2){
     int16_t tmp = 0;
     tmp = data[1] << 8 | data[0];
-    float value = tmp / 1.0f;
+    float value = tmp / 10.0f;
     publish_state(value);
   }
 }
