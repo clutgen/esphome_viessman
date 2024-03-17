@@ -83,6 +83,7 @@ class VitoConnect : public uart::UARTDevice, public PollingComponent {
     };
     static void _onData(uint8_t* data, uint8_t len, void* arg);
     static void _onError(uint8_t error, void* arg);
+    bool _resetQueueRequested = false;
 
     std::function<void(uint8_t, Datapoint*)> _onErrorCb;
 };

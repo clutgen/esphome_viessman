@@ -151,6 +151,22 @@ class SimpleQueue {
     return _count;
   }
 
+  /**
+   * @brief Empty the queue
+   *
+   */
+  void empty() {
+    std::lock_guard<std::mutex> lock(_mutex);
+    while (_count > 0) {
+      ++_firstPosition;
+      if (_firstPosition == _size) {
+        // rollover to front of array
+        _firstPosition = 0;
+      }
+      --_count;
+    }
+  }
+
  private:
   T* _buffer;
   size_t _firstPosition;

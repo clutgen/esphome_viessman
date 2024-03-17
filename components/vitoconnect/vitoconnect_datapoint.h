@@ -38,6 +38,7 @@ class Datapoint {
  public:
   Datapoint();
   virtual ~Datapoint();
+  bool* askQueueReset = nullptr;
 
   void setAddress(uint16_t address) {  this->_address = address; };
   uint16_t getAddress() { return this->_address; };

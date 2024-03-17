@@ -179,6 +179,12 @@ class Optolink {
   bool write(uint16_t address, uint8_t length, uint8_t* data, void* arg = nullptr);
 
   /**
+   * @brief Remove all current datapoints
+   *
+   */
+  void empty();
+
+  /**
    * @brief Pure virtual method to start the Optolink (implemented in protocol 
    *        classes).
    */
