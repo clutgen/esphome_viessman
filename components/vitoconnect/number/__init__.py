@@ -7,7 +7,7 @@ from .. import vitoconnect_ns, VitoConnect, CONF_VITOCONNECT_ID
 DEPENDENCIES = ["vitoconnect"]
 OPTOLINKNumber = vitoconnect_ns.class_("OPTOLINKNumber", number.Number)
 
-CONFIG_SCHEMA = number.NUMBER_SCHEMA.extend({
+CONFIG_SCHEMA = number.number_schema.extend({
     cv.GenerateID(): cv.declare_id(OPTOLINKNumber),
     cv.GenerateID(CONF_VITOCONNECT_ID): cv.use_id(VitoConnect),
     cv.Required(CONF_ADDRESS): cv.uint16_t,
