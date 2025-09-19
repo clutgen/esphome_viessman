@@ -60,16 +60,17 @@ class SimpleQueue {
       _buffer = new T[_size];
     }
 
-  SimpleQueue(const SimpleQueue& obj) {
-    std::lock_guard<std::mutex> lock(obj._mutex);
-    _buffer = new T[obj._size];
-    _firstPosition = obj._firstPosition;
-    _nextPosition = obj._nextPosition;
-    _count = obj._count;
-    _size = obj._size;
-    for (size_t i = 0; i < _count; ++i) {
-      _buffer[i] = obj._buffer[i];
-    }
+  SimpleQueue(const SimpleQueue& obj)
+    : _buffer(new T[obj._size]),
+      _firstPosition(obj._firstPosition),
+      _nextPosition(obj._nextPosition),
+      _count(obj._count),
+      _size(obj._size)
+  {
+      std::lock_guard<std::mutex> lock(obj._mutex);
+      for (size_t i = 0; i < _count; ++i) {
+          _buffer[i] = obj._buffer[i];
+      }
   }
 
   /**
