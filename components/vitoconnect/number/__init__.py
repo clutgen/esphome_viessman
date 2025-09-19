@@ -4,6 +4,9 @@ from esphome.components import number
 from esphome.const import CONF_ID, CONF_NAME, CONF_ADDRESS, CONF_LENGTH
 from .. import vitoconnect_ns, VitoConnect, CONF_VITOCONNECT_ID
 
+CONF_ADDRESS = "address"
+CONF_LENGTH  = "length"
+
 DEPENDENCIES = ["vitoconnect"]
 OPTOLINKNumber = vitoconnect_ns.class_("OPTOLINKNumber", number.Number)
 
