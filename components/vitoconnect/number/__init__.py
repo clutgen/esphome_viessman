@@ -19,7 +19,7 @@ EXTRA_SCHEMA = cv.Schema({
 })
 
 # then extend the base number schema with it
-CONFIG_SCHEMA = number.number_schema().extend(EXTRA_SCHEMA)
+CONFIG_SCHEMA = number.number_schema(OPTOLINKNumber).extend(EXTRA_SCHEMA)
 
 async def to_code(config):
     var = await number.new_number(config, min_value = 0, max_value = 30, step = 1)
