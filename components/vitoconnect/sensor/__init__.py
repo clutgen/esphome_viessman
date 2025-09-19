@@ -4,15 +4,20 @@ from esphome.components import sensor
 from esphome.const import CONF_ID, CONF_NAME, CONF_ADDRESS, CONF_LENGTH #, CONF_TYPE 
 from .. import vitoconnect_ns, VitoConnect, CONF_VITOCONNECT_ID
 
+CONF_ADDRESS = "address"
+CONF_LENGTH  = "length"
+
 DEPENDENCIES = ["vitoconnect"]
 OPTOLINKSensor = vitoconnect_ns.class_("OPTOLINKSensor", sensor.Sensor)
 
-CONFIG_SCHEMA = sensor.sensor_schema({
+EXTRA_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(OPTOLINKSensor),
     cv.GenerateID(CONF_VITOCONNECT_ID): cv.use_id(VitoConnect),
     cv.Required(CONF_ADDRESS): cv.uint16_t,
     cv.Required(CONF_LENGTH): cv.uint8_t,
 })
+
+CONFIG_SCHEMA = sensor.sensor_schema(OPTOLINKSensor).extend(EXTRA_SCHEMA)
 
 async def to_code(config):
     var = await sensor.new_sensor(config)
