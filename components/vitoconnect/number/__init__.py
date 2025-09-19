@@ -10,12 +10,16 @@ CONF_LENGTH  = "length"
 DEPENDENCIES = ["vitoconnect"]
 OPTOLINKNumber = vitoconnect_ns.class_("OPTOLINKNumber", number.Number)
 
-CONFIG_SCHEMA = number.number_schema({
+# first create your own additions
+EXTRA_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(OPTOLINKNumber),
     cv.GenerateID(CONF_VITOCONNECT_ID): cv.use_id(VitoConnect),
     cv.Required(CONF_ADDRESS): cv.uint16_t,
     cv.Required(CONF_LENGTH): cv.uint8_t,
 })
+
+# then extend the base number schema with it
+CONFIG_SCHEMA = number.number_schema().extend(EXTRA_SCHEMA)
 
 async def to_code(config):
     var = await number.new_number(config, min_value = 0, max_value = 30, step = 1)
